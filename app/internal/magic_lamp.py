@@ -1,6 +1,9 @@
 import random
 from abc import ABCMeta, abstractmethod
+from typing import Mapping
 from typing import Iterable
+
+from .random_variable import DRV
 
 
 class AbstractMagicLamp(metaclass=ABCMeta):
@@ -9,13 +12,17 @@ class AbstractMagicLamp(metaclass=ABCMeta):
         raise NotImplementedError()
 
 
-class UsualMagicLamp(AbstractMagicLamp):
+class UsualMagicLamp(AbstractMagicLamp, DRV[int]):
     PROBABILITIES = {
         5000000: 0.26,
         10000000: 0.71,
         30000000: 0.02,
         100000000: 0.01,
     }
+
+    @property
+    def probabilities(self) -> Mapping[int, float]:
+        return self.PROBABILITIES
 
     def get_experience(self) -> int:
         return random.choices(
