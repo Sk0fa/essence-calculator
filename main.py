@@ -1,7 +1,7 @@
 from typing import Iterable
 
 from app.internal.level import LevelFactory
-from app.internal.magic_lamp import MagicLampService, UsualMagicLamp
+from app.internal.magic_lamp import ExtendedMagicLamp
 from app.internal.random_variable import DiscreteRandomVariablesSumma
 from app.internal.random_variable import DRV
 from app.internal.random_variable import DCDF
@@ -23,12 +23,11 @@ def get_upgrade_probablity(rv_generator: Iterable[DRV[int]], value: int) -> Iter
 
 if __name__ == '__main__':
     lvl_factory = LevelFactory()
-    level = lvl_factory.create(level_value=74, percent_collected=99.69)
-    # need_for_up = level.get_experience_for_next_level()
-    need_for_up = 18889090
+    level = lvl_factory.create(level_value=76, percent_collected=1.00)
+    need_for_up = level.get_experience_for_next_level()
 
-    max_lamps_count = 5
-    lamps = [UsualMagicLamp() for _ in range(max_lamps_count)]
+    max_lamps_count = 60
+    lamps = [ExtendedMagicLamp() for _ in range(max_lamps_count)]
     
 
     print('For level:', need_for_up)
